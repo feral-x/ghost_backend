@@ -5,6 +5,7 @@ import { IS_DEV_ENV } from './shared/utils/is-dev.util';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver } from '@nestjs/apollo';
 import { getGraphQLConfig } from './core/config/graphql.config';
+import { RedisModule } from './core/redis/redis.module';
 
 @Module({
 	imports: [ConfigModule.forRoot(
@@ -17,7 +18,8 @@ import { getGraphQLConfig } from './core/config/graphql.config';
 			useFactory: getGraphQLConfig,
 			imports: [ConfigModule],
 			inject: [ConfigService]
-		})
+		}),
+		RedisModule
 	],
 	controllers: [],
 	providers: [],
